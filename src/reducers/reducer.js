@@ -1,9 +1,17 @@
-import { GET_GH_USER } from '../actions/actions';
+import { 
+  GET_GH_USER_REPOS,
+  GH_USER_LOADING
+} from '../actions/actions';
 
-const reducer = (state, action) => {
+const reducer = (state = {
+  loading: true,
+  user: null,
+}, action) => {
   switch(action.type) {
-    case GET_GH_USER: 
-      return { ...state, user: action.payload };
+    case GH_USER_LOADING:
+      return { ...state, loading: true };
+    case GET_GH_USER_REPOS: 
+      return { ...state, loading: false, user: action.payload };
     default : return state;
   }
 };

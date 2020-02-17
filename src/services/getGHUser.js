@@ -7,4 +7,4 @@ const request = path => {
     });
 };
 
-export const getAllUserRepos = (username) => request(`https://api.github.com//users/:${username}/repos`);
+export const getAllUserRepos = (username) => request(`https://api.github.com/users?q=${username}`);

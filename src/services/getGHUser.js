@@ -7,7 +7,13 @@ const request = path => {
     });
 };
 
-export const getAllUserRepos = (username) => {
+
+export const getUser = (username) => {
   console.log(username);
   return request(`https://api.github.com/users/${username}`);
+};
+
+export const getAllUserRepos = (username) => {
+  console.log(username);
+  return request(`https://api.github.com/users/${username}/repos`);
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUserRepos, loading, setUserInState } from '../actions/actions';
+import { getUserRepos, loading, setUserInState, getUserFromGitHub } from '../actions/actions';
 import { getUser, getLoading, getRepos } from '../selectors/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllUserRepos } from '../services/getGHUser';
@@ -15,8 +15,11 @@ const UserRepos = () => {
   };
   const handleSubmit = event => {
     event.preventDefault();
+    dispatch(getUserFromGitHub(user));
     dispatch(getUserRepos(user));
   };
+
+  console.log(user.follower_count);
 
   const repoList = repos.map(repo => {
     return (
@@ -29,9 +32,13 @@ const UserRepos = () => {
         <input type='text' onChange={handleChange}></input>
         <button>Go</button>
       </form>
+      <p>Followers : {user.followers}</p>
+      <p>Following : {user.following}</p>
+      <p>Profile : {user.html_url}</p>
       <ul>
         {repoList}
       </ul>
+
     </>
   );
 };

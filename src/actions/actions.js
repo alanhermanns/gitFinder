@@ -1,4 +1,4 @@
-import { getAllUserRepos } from '../services/getGHUser';
+import { getAllUserRepos, getUser } from '../services/getGHUser';
 
 
 export const GET_GH_USER_REPOS = 'GET_GH_USER_REPOS';
@@ -11,6 +11,19 @@ export const getUserRepos = user => dispatch => {
     }));
 
 };
+
+export const GET_GH_USER = 'GET_GH_USER';
+export const getUserFromGitHub = user => dispatch => {
+  dispatch({ type: GH_USER_LOADING });
+  return getUser(user)
+    .then(user => {
+      dispatch({
+        type: GET_GH_USER,
+        payload: user
+      });
+    });
+};
+
 export const GH_USER_LOADING = 'GH_USER_LOADING';
 export const loading = () => ({
   type: GH_USER_LOADING,

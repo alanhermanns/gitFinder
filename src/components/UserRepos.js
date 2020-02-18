@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { getUserRepos, loading, setUserInState, getUserFromGitHub } from '../actions/actions';
 import { getUser, getLoading, getRepos } from '../selectors/selectors';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,8 +18,6 @@ const UserRepos = () => {
     dispatch(getUserFromGitHub(user));
     dispatch(getUserRepos(user));
   };
-
-  console.log(user.follower_count);
 
   const repoList = repos.map(repo => {
     return (
